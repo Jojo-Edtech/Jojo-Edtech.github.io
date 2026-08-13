@@ -217,6 +217,18 @@ for (const field of ["category: string", "name: string", "year?: string", "locat
 const clientFiles = await listFiles(clientRootPath);
 assert(clientFiles.some((file) => file.endsWith("/index.html")), "Production client is missing index.html");
 assert(clientFiles.some((file) => file.endsWith("/404.html")), "Production client is missing 404.html");
+for (const route of [
+  "publications",
+  "projects/teacher-ai-course",
+  "projects/teacher-ai-workshops",
+  "projects/k12-ai-curriculum",
+  "projects/vibe-coded-products",
+]) {
+  assert(
+    clientFiles.some((file) => file.endsWith(`/${route}/index.html`)),
+    `Production client is missing a static entry for /${route}`,
+  );
+}
 
 for (const file of clientFiles) {
   const extension = extname(file).toLowerCase();
