@@ -108,9 +108,19 @@ assert(!dataText.includes('"research-collaboration"'), "International collaborat
 assert(dataText.includes('title: "AIED in Schools and Universities"'), "Approved Project 03 title is missing");
 assert(dataText.includes('slug: "vibe-coded-products"'), "Vibe-coded products project preview is missing");
 assert(dataText.includes('status: "coming-soon"'), "Vibe-coded products must remain marked as a preview");
+const courseGalleryAssets = [
+  "lesson-design-scaffold.jpg",
+  "session-6-local-case.jpg",
+  "course-format-24-hours.jpg",
+  "applied-capstone.jpg",
+];
 assert(
-  !dataText.includes("/assets/teacher-ai-course/"),
-  "Course-source images must remain outside the public portfolio until publication permission is documented",
+  courseGalleryAssets.every((asset) => dataText.includes(`/assets/teacher-ai-course/${asset}`)),
+  "Teacher AI course gallery must include exactly the four owner-approved core-evidence assets",
+);
+assert(
+  (dataText.match(/\/assets\/teacher-ai-course\//g) ?? []).length === courseGalleryAssets.length,
+  "Teacher AI course gallery asset count changed unexpectedly",
 );
 assert(dataText.includes("Interviewed 40 frontline teachers"), "Project 01 interview evidence is missing");
 assert(
@@ -233,6 +243,8 @@ for (const file of clientFiles) {
 await stat(new URL("../dist/client/assets/hero-editorial-ai-education-v2.png", import.meta.url));
 await stat(new URL("../dist/client/assets/research-editorial-collage-v2.png", import.meta.url));
 assert(!clientFiles.some((file) => /world-map/i.test(file)), "Map asset leaked into the public build");
-assert(!clientFiles.some((file) => /teacher-ai-course/i.test(file)), "Course-source image leaked into the public build");
+for (const asset of courseGalleryAssets) {
+  await stat(new URL(`../dist/client/assets/teacher-ai-course/${asset}`, import.meta.url));
+}
 
-console.log(`Public-site audit passed: ${doiMatches.length} verified DOI records, a dynamic contextual publication total, four projects with explicit link affordances, editorial assets, an abstract homepage collaboration network, instant navigation, and no restricted content or artifacts.`);
+console.log(`Public-site audit passed: ${doiMatches.length} verified DOI records, a dynamic contextual publication total, four projects with explicit link affordances, four owner-approved course-evidence figures, editorial assets, an abstract homepage collaboration network, instant navigation, and no restricted content or artifacts.`);

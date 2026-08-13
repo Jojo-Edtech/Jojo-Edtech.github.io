@@ -217,6 +217,36 @@ export const projects: Project[] = [
       "https://doi.org/10.1016/j.tate.2026.105384",
       "https://doi.org/10.1080/10494820.2025.2487538",
     ],
+    images: [
+      {
+        src: "/assets/teacher-ai-course/lesson-design-scaffold.jpg",
+        alt: "Guided lesson-plan template with sections for the teaching sequence and an AI-integrated activity.",
+        label: "Design scaffold",
+        caption:
+          "A structured lesson-planning scaffold guides teachers from learning sequences to AI-integrated activity design.",
+      },
+      {
+        src: "/assets/teacher-ai-course/session-6-local-case.jpg",
+        alt: "Session 6 teaching case and lesson-plan scaffold for an AI-enabled sustainability activity.",
+        label: "Local teaching case",
+        caption:
+          "A locally grounded teaching case translates AI and engineering ideas into an applied classroom design.",
+      },
+      {
+        src: "/assets/teacher-ai-course/course-format-24-hours.jpg",
+        alt: "Course figure showing the online self-paced format and approximately 24 total learning hours.",
+        label: "Learning commitment",
+        caption:
+          "The 24-hour, self-paced format makes the expected learning commitment clear from the outset.",
+      },
+      {
+        src: "/assets/teacher-ai-course/applied-capstone.jpg",
+        alt: "Capstone overview listing a lesson plan, multimedia resources, and a self-reflective essay.",
+        label: "Applied capstone",
+        caption:
+          "The capstone connects lesson planning, multimedia creation, and reflective practice.",
+      },
+    ],
   },
   {
     slug: "teacher-ai-workshops",
