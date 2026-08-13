@@ -1,0 +1,32 @@
+node_modules/
+dist/
+qa/
+design-qa.md
+.DS_Store
+.env*
+*.log
+
+# Private or source-only working material. The public repository must contain
+# only the website implementation and approved public assets.
+AGENTS.md
+MAP_SOURCE.md
+SCHOLAR_SYNC.md
+design-contract-*.md
+visualization-audit-*.md
+*.doc
+*.docx
+*.pdf
+*.ppt
+*.pptx
+*.xls
+*.xlsx
+*.csv
+*.tsv
+*.zip
+*.scorm
+*.key
+*.pem
+*.p12
+*.mobileprovision
+tmp/
+private/
