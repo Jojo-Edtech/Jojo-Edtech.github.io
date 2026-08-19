@@ -10,6 +10,15 @@ export type ProjectSource = {
   href: string;
 };
 
+export type ProjectProduct = {
+  title: string;
+  description: string;
+  href: string;
+  imageSrc: string;
+  imageAlt: string;
+  tags: string[];
+};
+
 type ProjectBase = {
   slug: string;
   number: string;
@@ -17,6 +26,7 @@ type ProjectBase = {
   title: string;
   summary: string;
   images?: ProjectImage[];
+  products?: ProjectProduct[];
 };
 
 export type ActiveProject = ProjectBase & {

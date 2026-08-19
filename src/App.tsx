@@ -20,7 +20,7 @@ import {
 } from "@phosphor-icons/react";
 import { Link, Route, Routes, useLocation, useParams } from "react-router-dom";
 import { academicHighlights, profile, projects, publications, researchInterests } from "./data";
-import type { ComingSoonProject, Publication } from "./types";
+import type { ComingSoonProject, ProjectProduct, Publication } from "./types";
 
 function ScrollAndTitle() {
   const location = useLocation();
@@ -686,10 +686,16 @@ function ProjectPage() {
             <section className="project-gallery section-pad section-border" aria-labelledby="gallery-heading">
               <div className="section-heading-row">
                 <div>
-                  <p className="eyebrow">Design evidence</p>
-                  <h2 id="gallery-heading">Inside the course design</h2>
+                  <p className="eyebrow">{project.slug === "teacher-ai-course" ? "Design evidence" : "Visual evidence"}</p>
+                  <h2 id="gallery-heading">
+                    {project.slug === "teacher-ai-course" ? "Inside the course design" : "Project snapshots"}
+                  </h2>
                 </div>
-                <p>Four views of the learning scaffold, a local teaching case, the course format, and the applied capstone.</p>
+                <p>
+                  {project.slug === "teacher-ai-course"
+                    ? "Four views of the learning scaffold, a local teaching case, the course format, and the applied capstone."
+                    : "Selected public-facing visuals connected to this project."}
+                </p>
               </div>
               <div className="gallery-grid">
                 {project.images.map((image, index) => (
@@ -708,20 +714,39 @@ function ProjectPage() {
             </section>
           )}
 
-          <section className="related-work section-pad section-border">
-            <div className="section-heading-row">
-              <div>
-                <p className="eyebrow">Published evidence</p>
-                <h2>Related published work</h2>
+          {project.products && project.products.length > 0 && (
+            <section className="product-showcase section-pad section-border" aria-labelledby="product-showcase-heading">
+              <div className="section-heading-row">
+                <div>
+                  <p className="eyebrow">Public prototypes</p>
+                  <h2 id="product-showcase-heading">Products of vibe coding</h2>
+                </div>
+                <p>Working websites and prototypes that turn AI education ideas into inspectable public interfaces.</p>
               </div>
-              <p>Published research connected to this project’s themes.</p>
-            </div>
-            <div className="related-grid">
-              {relatedPublications.map((publication) => (
-                <PublicationRow key={publication.id} publication={publication} compact />
-              ))}
-            </div>
-          </section>
+              <div className="product-grid">
+                {project.products.map((product) => (
+                  <ProductCard key={product.href} product={product} />
+                ))}
+              </div>
+            </section>
+          )}
+
+          {relatedPublications.length > 0 && (
+            <section className="related-work section-pad section-border">
+              <div className="section-heading-row">
+                <div>
+                  <p className="eyebrow">Published evidence</p>
+                  <h2>Related published work</h2>
+                </div>
+                <p>Published research connected to this project’s themes.</p>
+              </div>
+              <div className="related-grid">
+                {relatedPublications.map((publication) => (
+                  <PublicationRow key={publication.id} publication={publication} compact />
+                ))}
+              </div>
+            </section>
+          )}
 
           <Link className="next-project section-border" to={`/projects/${nextProject.slug}`}>
             <span>
@@ -733,6 +758,28 @@ function ProjectPage() {
         </article>
       </main>
     </Layout>
+  );
+}
+
+function ProductCard({ product }: { product: ProjectProduct }) {
+  return (
+    <ExternalLink className="product-card" href={product.href} ariaLabel={`${product.title} opens in a new tab`}>
+      <span className="product-image-frame">
+        <img src={product.imageSrc} alt={product.imageAlt} loading="lazy" decoding="async" />
+      </span>
+      <span className="product-card-copy">
+        <span className="product-title-row">
+          <strong>{product.title}</strong>
+          <ArrowUpRight aria-hidden="true" weight="bold" />
+        </span>
+        <span>{product.description}</span>
+      </span>
+      <span className="product-tags" aria-label={`${product.title} tags`}>
+        {product.tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
+      </span>
+    </ExternalLink>
   );
 }
 

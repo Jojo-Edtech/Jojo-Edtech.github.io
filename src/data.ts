@@ -311,8 +311,69 @@ export const projects: Project[] = [
     eyebrow: "Product Design & Development",
     title: "Building AI Education Products through Vibe Coding",
     summary:
-      "A developing portfolio of AI education tools and prototypes created through iterative, AI-assisted design and development.",
-    status: "coming-soon",
+      "A portfolio of AI education tools and prototypes built through iterative, AI-assisted design, frontend development, and rapid public deployment.",
+    role: "Product Designer & Vibe-Coding Developer",
+    date: "2025 – Present",
+    location: "Hong Kong SAR · Online",
+    body: {
+      context: [
+        "Vibe coding has become part of my research-to-practice workflow: I use AI-assisted development to turn educational ideas into working interfaces that teachers, students, and researchers can inspect, test, and discuss.",
+        "This project gathers public-facing prototypes and websites that connect English learning, AI education, scholarly reading, research communication, and lightweight study communities.",
+      ],
+      whatIDid: [
+        "Translated education and research ideas into usable web prototypes with clear information architecture and interaction flows.",
+        "Designed and iterated product interfaces, visual systems, and public landing experiences for AI education use cases.",
+        "Built and deployed public web versions so collaborators and users can access the work through stable links.",
+      ],
+    },
+    relatedDois: [],
+    products: [
+      {
+        title: "English Writing Platform",
+        description:
+          "A teacher-facing dashboard prototype for reviewing English-learning evidence, correction patterns, and student writing support.",
+        href: "https://jojo-edtech.github.io/englishdemo/",
+        imageSrc: "/assets/vibe-coding-showcase/englishdemo.png",
+        imageAlt: "Screenshot of an English writing analytics dashboard with navigation, progress cards, and evidence panels.",
+        tags: ["English learning", "Teacher dashboard"],
+      },
+      {
+        title: "AIED Journal Hub",
+        description:
+          "A scholarly reading and discovery interface for organising AI in education journal information and research navigation.",
+        href: "https://jojo-edtech.github.io/aied-journal/",
+        imageSrc: "/assets/vibe-coding-showcase/aied-journal.png",
+        imageAlt: "Screenshot of the AIED Journal Hub website interface.",
+        tags: ["Research tools", "Academic reading"],
+      },
+      {
+        title: "AI Thomas",
+        description:
+          "A public-facing AI education prototype that packages an educational interaction concept into a shareable web experience.",
+        href: "https://jojo-edtech.github.io/AIthomas/?v=fc99c8f",
+        imageSrc: "/assets/vibe-coding-showcase/aithomas.png",
+        imageAlt: "Screenshot of the AI Thomas web prototype.",
+        tags: ["AI education", "Prototype"],
+      },
+      {
+        title: "Study House",
+        description:
+          "A quiet bilingual cloud study space for small trusted groups, published through Netlify for public access.",
+        href: "https://ourstudyhouse.netlify.app/",
+        imageSrc: "/assets/vibe-coding-showcase/study-house.png",
+        imageAlt: "Screenshot of the Study House web app homepage.",
+        tags: ["Study community", "Bilingual product"],
+      },
+      {
+        title: "AI Prof Chai",
+        description:
+          "A research communication website that presents an AI education profile and related public-facing materials.",
+        href: "https://jojo-edtech.github.io/ai-prof-chai/",
+        imageSrc: "/assets/vibe-coding-showcase/ai-prof-chai.png",
+        imageAlt: "Screenshot of the AI Prof Chai website.",
+        tags: ["Research profile", "Public communication"],
+      },
+    ],
   },
 ];
 
@@ -382,6 +443,8 @@ export const academicHighlights: AcademicHighlight[] = [
   { category: "Peer Review Service", name: "Interactive Learning Environments" },
   { category: "Peer Review Service", name: "International Journal of STEM Education" },
   { category: "Peer Review Service", name: "English Teaching & Learning" },
+  { category: "Peer Review Service", name: "Teaching and Teacher Education" },
+  { category: "Peer Review Service", name: "Computers and Education: Artificial Intelligence" },
   {
     category: "Awards & Distinctions",
     name: "Academic Award Scholarship, Master of Education Programme",

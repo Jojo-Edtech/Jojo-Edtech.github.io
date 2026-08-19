@@ -106,8 +106,36 @@ assert(featuredCount === 4, `Expected four featured publications, found ${featur
 assert(projectSlugs.length === 4, `Expected four projects, found ${projectSlugs.length}`);
 assert(!dataText.includes('"research-collaboration"'), "International collaboration must not remain modelled as a project");
 assert(dataText.includes('title: "AIED in Schools and Universities"'), "Approved Project 03 title is missing");
-assert(dataText.includes('slug: "vibe-coded-products"'), "Vibe-coded products project preview is missing");
-assert(dataText.includes('status: "coming-soon"'), "Vibe-coded products must remain marked as a preview");
+assert(dataText.includes('slug: "vibe-coded-products"'), "Vibe-coded products project is missing");
+assert(
+  dataText.includes('role: "Product Designer & Vibe-Coding Developer"'),
+  "Vibe-coded products project must be a public active project",
+);
+assert(!dataText.includes('status: "coming-soon"'), "Vibe-coded products should no longer be marked as coming soon");
+const vibeProductAssets = [
+  "englishdemo.png",
+  "aied-journal.png",
+  "aithomas.png",
+  "study-house.png",
+  "ai-prof-chai.png",
+];
+for (const asset of vibeProductAssets) {
+  assert(dataText.includes(`/assets/vibe-coding-showcase/${asset}`), `Vibe-coding product asset is missing: ${asset}`);
+}
+assert(
+  (dataText.match(/\/assets\/vibe-coding-showcase\//g) ?? []).length === vibeProductAssets.length,
+  "Vibe-coding product asset count changed unexpectedly",
+);
+for (const href of [
+  "https://jojo-edtech.github.io/englishdemo/",
+  "https://jojo-edtech.github.io/aied-journal/",
+  "https://jojo-edtech.github.io/AIthomas/?v=fc99c8f",
+  "https://ourstudyhouse.netlify.app/",
+  "https://jojo-edtech.github.io/ai-prof-chai/",
+]) {
+  assert(dataText.includes(href), `Vibe-coding public link is missing: ${href}`);
+}
+assert(!dataText.includes("https://github.com/Jojo-Edtech/study-house"), "Private study-house repository link leaked");
 const courseGalleryAssets = [
   "lesson-design-scaffold.jpg",
   "session-6-local-case.jpg",
@@ -147,6 +175,11 @@ assert(
 );
 assert(dataText.includes('category: "Peer Review Service"'), "Peer Review Service heading data is missing");
 assert(!dataText.includes('category: "Peer Review"'), "Old Peer Review heading remains in data");
+assert(dataText.includes('name: "Teaching and Teacher Education"'), "Teaching and Teacher Education peer-review entry is missing");
+assert(
+  dataText.includes('name: "Computers and Education: Artificial Intelligence"'),
+  "Computers and Education: Artificial Intelligence peer-review entry is missing",
+);
 assert(!appText.includes('className="vision section-pad"'), "Removed homepage vision section returned");
 assert(!appText.includes('hero-note-top'), "The homepage publication-count badge returned");
 assert(
@@ -204,7 +237,7 @@ for (const pattern of unpublishedConceptPatterns) {
 for (const pattern of privatePathPatterns) {
   assert(!pattern.test(authoredText), "Local filesystem path leaked into authored source");
 }
-for (const field of ["date: string", "body:", "relatedDois: string[]", "images?: ProjectImage[]"]) {
+for (const field of ["date: string", "body:", "relatedDois: string[]", "images?: ProjectImage[]", "products?: ProjectProduct[]"]) {
   assert(typesText.includes(field), `Project interface is missing ${field}`);
 }
 for (const field of ["journal: string", "volumeIssuePages: string", "doi: string", "relatedProjects: string[]"]) {
@@ -258,5 +291,8 @@ assert(!clientFiles.some((file) => /world-map/i.test(file)), "Map asset leaked i
 for (const asset of courseGalleryAssets) {
   await stat(new URL(`../dist/client/assets/teacher-ai-course/${asset}`, import.meta.url));
 }
+for (const asset of vibeProductAssets) {
+  await stat(new URL(`../dist/client/assets/vibe-coding-showcase/${asset}`, import.meta.url));
+}
 
-console.log(`Public-site audit passed: ${doiMatches.length} verified DOI records, a dynamic contextual publication total, four projects with explicit link affordances, four owner-approved course-evidence figures, editorial assets, an abstract homepage collaboration network, instant navigation, and no restricted content or artifacts.`);
+console.log(`Public-site audit passed: ${doiMatches.length} verified DOI records, a dynamic contextual publication total, four projects with explicit link affordances, four owner-approved course-evidence figures, five public vibe-coding product screenshots, editorial assets, an abstract homepage collaboration network, instant navigation, and no restricted content or artifacts.`);

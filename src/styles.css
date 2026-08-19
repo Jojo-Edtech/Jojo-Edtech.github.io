@@ -559,6 +559,10 @@ main h1:focus,
   background: var(--blue);
 }
 
+.project-card-4 {
+  background: var(--green);
+}
+
 .project-card-top {
   display: flex;
   align-items: center;
@@ -1279,7 +1283,8 @@ main h1:focus,
 }
 
 .related-work,
-.project-gallery {
+.project-gallery,
+.product-showcase {
   margin: 20px 70px 0;
   padding: 58px 48px;
   border-radius: 22px;
@@ -1288,6 +1293,98 @@ main h1:focus,
 
 .project-gallery {
   background: var(--lilac);
+}
+
+.product-showcase {
+  background: var(--paper);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.product-card {
+  display: grid;
+  overflow: hidden;
+  grid-template-rows: auto 1fr auto;
+  min-height: 450px;
+  border: 3px solid var(--ink);
+  border-radius: 18px;
+  background: var(--card);
+  box-shadow: 8px 8px 0 var(--ink);
+  color: var(--ink);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.product-card:hover,
+.product-card:focus-visible {
+  box-shadow: 11px 11px 0 var(--ink);
+  transform: translate(-2px, -2px);
+}
+
+.product-image-frame {
+  display: block;
+  overflow: hidden;
+  border-bottom: 3px solid var(--ink);
+  background: #eef2f7;
+}
+
+.product-image-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.product-card-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px 24px 12px;
+}
+
+.product-title-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.product-title-row strong {
+  font-size: 1.22rem;
+  line-height: 1.25;
+}
+
+.product-title-row svg {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  color: var(--teal);
+}
+
+.product-card-copy > span:last-child {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.product-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 24px 24px;
+}
+
+.product-tags span {
+  padding: 7px 10px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--yellow);
+  font-size: 0.65rem;
+  font-weight: 800;
 }
 
 .related-grid {
@@ -2246,7 +2343,8 @@ main h1:focus,
   .interest-grid,
   .project-grid,
   .highlight-grid,
-  .related-grid {
+  .related-grid,
+  .product-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2261,7 +2359,8 @@ main h1:focus,
   .section-heading-row h2,
   .publication-intro h2,
   .related-work h2,
-  .project-gallery h2 {
+  .project-gallery h2,
+  .product-showcase h2 {
     font-size: clamp(2rem, 10vw, 2.75rem);
   }
 
@@ -2359,6 +2458,7 @@ main h1:focus,
   .project-placeholder,
   .related-work,
   .project-gallery,
+  .product-showcase,
   .publication-group {
     margin-right: 16px;
     margin-left: 16px;
@@ -2431,6 +2531,16 @@ main h1:focus,
     grid-template-columns: 1fr;
     gap: 10px;
     min-height: auto;
+  }
+
+  .product-card {
+    min-height: auto;
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+
+  .product-card:hover,
+  .product-card:focus-visible {
+    box-shadow: 7px 7px 0 var(--ink);
   }
 
   .gallery-figure-label {
