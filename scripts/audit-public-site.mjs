@@ -156,6 +156,18 @@ assert(
   "Project 01 instructional-design collaboration evidence is missing",
 );
 assert(appText.includes('className="project-card-action"'), "Project cards need an explicit clickable affordance");
+assert(appText.includes('<article className={`project-card'), "Project cards must separate navigation and Quick View controls");
+assert(appText.includes('className="project-quick-view"'), "Project Quick View controls are missing");
+assert(appText.includes('<dialog'), "Accessible native dialog support is missing");
+assert(appText.includes('className="media-lightbox"'), "Gallery and product lightbox support is missing");
+assert(appText.includes('aria-label={`Open image ${index + 1}'), "Course-gallery preview labels are missing");
+assert(appText.includes('aria-label={`Open screenshot ${index + 1}'), "Product-preview labels are missing");
+assert(appText.includes('className="project-section-nav"'), "Project section navigation is missing");
+assert(appText.includes('role="search"'), "Publication search landmark is missing");
+assert(appText.includes('aria-controls="publication-results"'), "Publication filters are not connected to the results region");
+assert(appText.includes('className="filter-chip"'), "Publication authorship filters are missing");
+assert(appText.includes('role="status" aria-live="polite"'), "Interactive status announcements are missing");
+assert(appText.includes('aria-pressed={selectedLocation.name === location.name}'), "Collaboration nodes need an explicit selected state");
 assert(appText.includes('data-publication-status="published"'), "Published-item audit marker is missing");
 assert(appText.includes('data-experience-kind={project.slug === "teacher-ai-workshops"'), "Workshop audit marker is missing");
 assert(dataText.includes('role: "Workshop Lead & Speaker"'), "Approved workshop role is missing");
@@ -223,8 +235,10 @@ for (const location of ["United States", "Canada", "Japan"]) {
 assert(!/world-map/i.test(appText), "Map asset or map wording remains in the public interface");
 assert(!/gradient\s*\(/i.test(cssText), "CSS gradients are not permitted in this visual system");
 assert(!/scroll-behavior\s*:\s*smooth/i.test(cssText), "Smooth scrolling must remain disabled");
+assert(!/scroll-snap(?:-type|-align)?\s*:/i.test(cssText), "Scroll snapping must remain disabled");
 assert(!/behavior\s*:\s*["']smooth["']/i.test(appText), "JavaScript smooth scrolling must remain disabled");
 assert(!appText.includes("scrollIntoView("), "scrollIntoView must not compete with route focus restoration");
+assert(!/\bautoplay\b/i.test(appText), "Automatic media playback is not permitted");
 assert(appText.includes('scrollRestoration = "manual"'), "Browser scroll restoration must remain under route control");
 assert(appText.includes("initialLocationKey") && appText.includes("location.key"), "Initial focus and repeated hash navigation safeguards are missing");
 assert(!/bodoni/i.test([mainText, cssText, packageText].join("\n")), "Decorative Bodoni typography must not return");
