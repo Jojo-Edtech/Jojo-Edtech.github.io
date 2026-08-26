@@ -168,6 +168,21 @@ const textureAssets = ["paper-crumple.webp", "paper-fibre.webp", "technical-grid
 for (const asset of textureAssets) {
   assert(cssText.includes(`/assets/textures/${asset}`), `Tactile texture asset is missing from CSS: ${asset}`);
 }
+for (const textureClass of [
+  "texture-header-fibre",
+  "texture-page-shell",
+  "texture-paper-fibre",
+  "texture-paper-crumple",
+  "texture-technical-grid",
+  "texture-charcoal",
+  "texture-readable",
+]) {
+  assert(appText.includes(textureClass), `Full-site tactile texture coverage is missing: ${textureClass}`);
+}
+assert(
+  cssText.includes("--texture-filter: brightness(0.88) contrast(1.18)"),
+  "Tactile textures are not tone-adjusted for visible material depth",
+);
 assert(dataText.includes("Interviewed 40 frontline teachers"), "Project 01 interview evidence is missing");
 assert(
   dataText.includes("two senior instructional designers"),

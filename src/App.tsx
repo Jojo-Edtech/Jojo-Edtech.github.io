@@ -126,7 +126,7 @@ function Header() {
   }, [menuOpen]);
 
   return (
-    <header className="site-header">
+    <header className="site-header texture-header-fibre">
       <div className="header-inner">
         <Link
           className="brand"
@@ -228,7 +228,7 @@ function Footer() {
 
 function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="page-shell" data-portfolio-root="true">
+    <div className="page-shell texture-page-shell" data-portfolio-root="true">
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
@@ -551,7 +551,7 @@ function CollaborationMap() {
   return (
     <section
       id="collaboration"
-      className="collaboration-map section-border"
+      className="collaboration-map section-border texture-surface texture-technical-grid"
       aria-labelledby="collaboration-map-heading"
       tabIndex={-1}
       data-collaboration-visual="abstract-network"
@@ -667,7 +667,7 @@ function HomePage() {
         </section>
 
         <section
-          className="interest-panel section-pad texture-surface texture-paper-fibre"
+          className="interest-panel section-pad texture-surface texture-technical-grid"
           aria-labelledby="research-interests-heading"
         >
           <div className="compact-heading">
@@ -863,7 +863,7 @@ function ComingSoonProjectPage({ project }: { project: ComingSoonProject }) {
             </div>
           </section>
 
-          <section className="project-placeholder section-pad section-border">
+          <section className="project-placeholder section-pad section-border texture-surface texture-technical-grid">
             <div>
               <p className="eyebrow">Portfolio in development</p>
               <h2>Selected product stories are coming next.</h2>
@@ -874,7 +874,10 @@ function ComingSoonProjectPage({ project }: { project: ComingSoonProject }) {
             </p>
           </section>
 
-          <Link className="next-project section-border" to={`/projects/${nextProject.slug}`}>
+          <Link
+            className="next-project section-border texture-surface texture-paper-crumple"
+            to={`/projects/${nextProject.slug}`}
+          >
             <span>
               Next project <small>{nextProject.number}</small>
             </span>
@@ -917,7 +920,7 @@ function ProjectPage() {
           className="project-detail"
           data-experience-kind={project.slug === "teacher-ai-workshops" ? "teacher-ai-workshops" : undefined}
         >
-          <section className="project-hero section-pad">
+          <section className="project-hero section-pad texture-surface texture-paper-fibre">
             <div className="project-hero-copy">
               <Link className="back-link" to="/#projects">
                 <ArrowLeft aria-hidden="true" weight="bold" /> Back to projects
@@ -959,7 +962,11 @@ function ProjectPage() {
             {relatedPublications.length > 0 && <a href="#project-publications">Published work</a>}
           </nav>
 
-          <section id="project-context" className="project-story section-pad section-border" tabIndex={-1}>
+          <section
+            id="project-context"
+            className="project-story section-pad section-border texture-surface texture-paper-fibre texture-readable"
+            tabIndex={-1}
+          >
             <div className="story-label">
               <span>01</span>
               <h2>Context</h2>
@@ -984,7 +991,11 @@ function ProjectPage() {
             </div>
           </section>
 
-          <section id="project-role" className="project-story section-pad section-border" tabIndex={-1}>
+          <section
+            id="project-role"
+            className="project-story section-pad section-border texture-surface texture-paper-crumple texture-readable"
+            tabIndex={-1}
+          >
             <div className="story-label">
               <span>02</span>
               <h2>My role</h2>
@@ -995,7 +1006,11 @@ function ProjectPage() {
             </div>
           </section>
 
-          <section id="project-contributions" className="project-story section-pad section-border" tabIndex={-1}>
+          <section
+            id="project-contributions"
+            className="project-story section-pad section-border texture-surface texture-technical-grid texture-readable"
+            tabIndex={-1}
+          >
             <div className="story-label">
               <span>03</span>
               <h2>What I did</h2>
@@ -1094,7 +1109,7 @@ function ProjectPage() {
           {relatedPublications.length > 0 && (
             <section
               id="project-publications"
-              className="related-work section-pad section-border"
+              className="related-work section-pad section-border texture-surface texture-paper-fibre"
               tabIndex={-1}
             >
               <div className="section-heading-row">
@@ -1112,7 +1127,10 @@ function ProjectPage() {
             </section>
           )}
 
-          <Link className="next-project section-border" to={`/projects/${nextProject.slug}`}>
+          <Link
+            className="next-project section-border texture-surface texture-paper-crumple"
+            to={`/projects/${nextProject.slug}`}
+          >
             <span>
               Next project <small>{nextProject.number}</small>
             </span>
@@ -1236,7 +1254,10 @@ function PublicationsPage() {
           </div>
         </section>
 
-        <section className="publication-explorer" aria-labelledby="publication-explorer-heading">
+        <section
+          className="publication-explorer texture-surface texture-technical-grid"
+          aria-labelledby="publication-explorer-heading"
+        >
           <div className="publication-explorer-heading">
             <div>
               <p className="eyebrow">Find published work</p>
@@ -1319,7 +1340,10 @@ function PublicationsPage() {
             />
           )}
           {filteredPublications.length === 0 && (
-            <section className="publication-empty" aria-labelledby="publication-empty-heading">
+            <section
+              className="publication-empty texture-surface texture-paper-crumple"
+              aria-labelledby="publication-empty-heading"
+            >
               <p className="eyebrow">No matching record</p>
               <h2 id="publication-empty-heading">Try a broader search.</h2>
               <p>Only verified published work is included in this public portfolio.</p>
@@ -1344,7 +1368,10 @@ function PublicationGroup({
   startIndex: number;
 }) {
   return (
-    <section className="publication-group section-pad section-border" aria-labelledby={`${title.toLowerCase().replaceAll(" ", "-")}-heading`}>
+    <section
+      className="publication-group section-pad section-border texture-surface texture-paper-fibre texture-readable"
+      aria-labelledby={`${title.toLowerCase().replaceAll(" ", "-")}-heading`}
+    >
       <div className="group-heading">
         <h2 className="eyebrow" id={`${title.toLowerCase().replaceAll(" ", "-")}-heading`}>{title}</h2>
         <span>{publicationGroup.length.toString().padStart(2, "0")}</span>
@@ -1379,7 +1406,11 @@ function PublicationGroup({
 function NotFoundPage() {
   return (
     <Layout>
-      <main id="main-content" className="not-found section-pad" tabIndex={-1}>
+      <main
+        id="main-content"
+        className="not-found section-pad texture-surface texture-paper-crumple"
+        tabIndex={-1}
+      >
         <p className="eyebrow">Page not found</p>
         <h1 tabIndex={-1}>Let’s return to the portfolio.</h1>
         <Link className="button button-primary" to="/">
