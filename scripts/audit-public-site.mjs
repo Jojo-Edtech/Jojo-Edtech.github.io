@@ -180,9 +180,12 @@ for (const textureClass of [
   assert(appText.includes(textureClass), `Full-site tactile texture coverage is missing: ${textureClass}`);
 }
 assert(
-  cssText.includes("--texture-filter: brightness(0.88) contrast(1.18)"),
-  "Tactile textures are not tone-adjusted for visible material depth",
+  cssText.includes("--texture-filter: grayscale(1) brightness(1.02) contrast(1.16)"),
+  "Tactile textures are not brightened while preserving visible material depth",
 );
+assert(cssText.includes("--canvas: #ffe9d5"), "The luminous apricot canvas token is missing");
+assert(cssText.includes("--footer: #3d56c4"), "The bright accessible cobalt footer token is missing");
+assert(cssText.includes("--texture-blend: normal"), "The bright texture blend mode is missing");
 assert(dataText.includes("Interviewed 40 frontline teachers"), "Project 01 interview evidence is missing");
 assert(
   dataText.includes("two senior instructional designers"),
