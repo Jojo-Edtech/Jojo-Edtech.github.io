@@ -36,22 +36,27 @@ type PreviewMedia = {
   tags?: string[];
 };
 
+function normalisePathname(pathname: string) {
+  return pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+}
+
 function ScrollAndTitle() {
   const location = useLocation();
   const initialLocationKey = useRef(location.key);
 
   useLayoutEffect(() => {
-    const matchedProject = location.pathname.startsWith("/projects/")
-      ? projects.find((project) => location.pathname.endsWith(project.slug))
+    const pathname = normalisePathname(location.pathname);
+    const matchedProject = pathname.startsWith("/projects/")
+      ? projects.find((project) => pathname.endsWith(project.slug))
       : undefined;
     const routeTitle =
-      location.pathname === "/publications"
+      pathname === "/publications"
         ? "Published Work | Xinyan Zhou Jojo"
-        : location.pathname.startsWith("/projects/")
+        : pathname.startsWith("/projects/")
           ? matchedProject
             ? `${matchedProject.title} | Xinyan Zhou Jojo`
             : "Page Not Found | Xinyan Zhou Jojo"
-          : location.pathname === "/"
+          : pathname === "/"
             ? "Xinyan Zhou Jojo | Research into Practice"
             : "Page Not Found | Xinyan Zhou Jojo";
 
@@ -100,7 +105,8 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const location = useLocation();
-  const isKnownProjectPage = projects.some((project) => location.pathname === `/projects/${project.slug}`);
+  const pathname = normalisePathname(location.pathname);
+  const isKnownProjectPage = projects.some((project) => pathname === `/projects/${project.slug}`);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -126,7 +132,7 @@ function Header() {
           className="brand"
           to="/"
           aria-label="Xinyan Zhou Jojo, homepage"
-          aria-current={location.pathname === "/" && !location.hash ? "page" : undefined}
+          aria-current={pathname === "/" && !location.hash ? "page" : undefined}
         >
           Xinyan Zhou Jojo
         </Link>
@@ -138,7 +144,7 @@ function Header() {
           >
             Projects
           </Link>
-          <Link to="/publications" aria-current={location.pathname === "/publications" ? "page" : undefined}>
+          <Link to="/publications" aria-current={pathname === "/publications" ? "page" : undefined}>
             Publications
           </Link>
           <Link to="/#highlights" aria-current={location.hash === "#highlights" ? "location" : undefined}>
@@ -174,7 +180,7 @@ function Header() {
           >
             Projects
           </Link>
-          <Link to="/publications" aria-current={location.pathname === "/publications" ? "page" : undefined}>
+          <Link to="/publications" aria-current={pathname === "/publications" ? "page" : undefined}>
             Publications
           </Link>
           <Link to="/#highlights" aria-current={location.hash === "#highlights" ? "location" : undefined}>

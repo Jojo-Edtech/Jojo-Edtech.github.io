@@ -241,6 +241,7 @@ assert(!appText.includes("scrollIntoView("), "scrollIntoView must not compete wi
 assert(!/\bautoplay\b/i.test(appText), "Automatic media playback is not permitted");
 assert(appText.includes('scrollRestoration = "manual"'), "Browser scroll restoration must remain under route control");
 assert(appText.includes("initialLocationKey") && appText.includes("location.key"), "Initial focus and repeated hash navigation safeguards are missing");
+assert(appText.includes("normalisePathname"), "Static-route trailing slashes must not break page titles or navigation state");
 assert(!/bodoni/i.test([mainText, cssText, packageText].join("\n")), "Decorative Bodoni typography must not return");
 for (const pattern of authoredStatusPatterns) {
   assert(!pattern.test(authoredText), `Non-public manuscript status leaked into authored source: ${pattern}`);
