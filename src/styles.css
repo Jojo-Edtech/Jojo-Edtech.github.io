@@ -250,7 +250,7 @@ main h1:focus,
 }
 
 .section-pad {
-  padding: 88px 70px;
+  padding: 72px 70px;
 }
 
 .section-border {
@@ -506,7 +506,7 @@ main h1:focus,
   grid-template-columns: 1.2fr 0.8fr;
   gap: 42px;
   align-items: end;
-  margin-bottom: 42px;
+  margin-bottom: 34px;
 }
 
 .section-heading-row h2 {
@@ -2116,7 +2116,7 @@ main h1:focus,
   }
 
   .section-pad {
-    padding: 72px 42px;
+    padding: 60px 42px;
   }
 
   .hero {
@@ -2291,7 +2291,7 @@ main h1:focus,
   }
 
   .section-pad {
-    padding: 58px 22px;
+    padding: 48px 22px;
   }
 
   .hero {
@@ -2367,7 +2367,7 @@ main h1:focus,
   .section-heading-row {
     grid-template-columns: 1fr;
     gap: 16px;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
   }
 
   .section-heading-row > p {
