@@ -150,6 +150,24 @@ assert(
   (dataText.match(/\/assets\/teacher-ai-course\//g) ?? []).length === courseGalleryAssets.length,
   "Teacher AI course gallery asset count changed unexpectedly",
 );
+const workshopGalleryAssets = [
+  "assessment-reframing.webp",
+  "innovation-within-constraints.webp",
+  "prompt-engineering-method.webp",
+  "learning-capacities.webp",
+];
+assert(
+  workshopGalleryAssets.every((asset) => dataText.includes(`/assets/gba-teacher-workshops/${asset}`)),
+  "Teacher AI workshop gallery must include exactly the four owner-approved anonymised assets",
+);
+assert(
+  (dataText.match(/\/assets\/gba-teacher-workshops\//g) ?? []).length === workshopGalleryAssets.length,
+  "Teacher AI workshop gallery asset count changed unexpectedly",
+);
+const textureAssets = ["paper-crumple.webp", "paper-fibre.webp", "technical-grid.webp", "charcoal-paper.webp"];
+for (const asset of textureAssets) {
+  assert(cssText.includes(`/assets/textures/${asset}`), `Tactile texture asset is missing from CSS: ${asset}`);
+}
 assert(dataText.includes("Interviewed 40 frontline teachers"), "Project 01 interview evidence is missing");
 assert(
   dataText.includes("two senior instructional designers"),
@@ -306,8 +324,14 @@ assert(!clientFiles.some((file) => /world-map/i.test(file)), "Map asset leaked i
 for (const asset of courseGalleryAssets) {
   await stat(new URL(`../dist/client/assets/teacher-ai-course/${asset}`, import.meta.url));
 }
+for (const asset of workshopGalleryAssets) {
+  await stat(new URL(`../dist/client/assets/gba-teacher-workshops/${asset}`, import.meta.url));
+}
 for (const asset of vibeProductAssets) {
   await stat(new URL(`../dist/client/assets/vibe-coding-showcase/${asset}`, import.meta.url));
 }
+for (const asset of textureAssets) {
+  await stat(new URL(`../dist/client/assets/textures/${asset}`, import.meta.url));
+}
 
-console.log(`Public-site audit passed: ${doiMatches.length} verified DOI records, a dynamic contextual publication total, four projects with explicit link affordances, four owner-approved course-evidence figures, five public vibe-coding product screenshots, editorial assets, an abstract homepage collaboration network, instant navigation, and no restricted content or artifacts.`);
+console.log(`Public-site audit passed: ${doiMatches.length} verified DOI records, a dynamic contextual publication total, four projects with explicit link affordances, four owner-approved course-evidence figures, four anonymised workshop-material figures, five public vibe-coding product screenshots, four tactile texture assets, editorial assets, an abstract homepage collaboration network, instant navigation, and no restricted content or artifacts.`);

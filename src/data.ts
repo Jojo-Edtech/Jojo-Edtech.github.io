@@ -274,6 +274,36 @@ export const projects: Project[] = [
       "https://doi.org/10.1016/j.tate.2026.105384",
       "https://doi.org/10.1080/10494820.2026.2614080",
     ],
+    images: [
+      {
+        src: "/assets/gba-teacher-workshops/assessment-reframing.webp",
+        alt: "Chinese-language workshop slide asking what education should assess when AI can answer questions.",
+        label: "Assessment reframing",
+        caption:
+          "A discussion prompt reframes assessment when AI can supply correct answers.",
+      },
+      {
+        src: "/assets/gba-teacher-workshops/innovation-within-constraints.webp",
+        alt: "Workshop slide connecting high-stakes assessment, classroom experimentation, and multiple learner pathways.",
+        label: "Working within constraints",
+        caption:
+          "A workshop scenario explores how assessment constraints can coexist with project learning, design thinking, and authentic problems.",
+      },
+      {
+        src: "/assets/gba-teacher-workshops/prompt-engineering-method.webp",
+        alt: "Chinese-language prompt-engineering slide organised around context, task, role, audience, and output.",
+        label: "Prompt design",
+        caption:
+          "A structured prompt-engineering model turns classroom context, task, role, audience, and output into a usable teaching prompt.",
+      },
+      {
+        src: "/assets/gba-teacher-workshops/learning-capacities.webp",
+        alt: "Workshop slide presenting six learning capacities through a grid of classroom examples.",
+        label: "Learning capacities",
+        caption:
+          "A six-capacity frame connects classroom examples with problem solving, empathy, communication, values, creativity, and academic ethics.",
+      },
+    ],
   },
   {
     slug: "k12-ai-curriculum",

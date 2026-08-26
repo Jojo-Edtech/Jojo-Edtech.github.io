@@ -2171,6 +2171,83 @@ select {
   outline-color: var(--yellow);
 }
 
+/* Tactile editorial surfaces */
+.texture-surface {
+  position: relative;
+  isolation: isolate;
+}
+
+.texture-surface::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  pointer-events: none;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 640px 640px;
+}
+
+.texture-surface > * {
+  position: relative;
+  z-index: 1;
+}
+
+.texture-paper-fibre::before {
+  background-image: url("/assets/textures/paper-fibre.webp");
+  mix-blend-mode: multiply;
+  opacity: 0.16;
+}
+
+.texture-paper-crumple::before {
+  background-image: url("/assets/textures/paper-crumple.webp");
+  mix-blend-mode: multiply;
+  opacity: 0.18;
+}
+
+.texture-technical-grid::before {
+  background-image: url("/assets/textures/technical-grid.webp");
+  background-size: 560px 560px;
+  mix-blend-mode: multiply;
+  opacity: 0.13;
+}
+
+.texture-charcoal::before {
+  background-image: url("/assets/textures/charcoal-paper.webp");
+  background-size: 720px 720px;
+  opacity: 0.7;
+}
+
+@media (max-width: 700px) {
+  .texture-paper-fibre::before,
+  .texture-paper-crumple::before {
+    background-size: 480px 480px;
+    opacity: 0.12;
+  }
+
+  .texture-technical-grid::before {
+    background-size: 440px 440px;
+    opacity: 0.09;
+  }
+
+  .texture-charcoal::before {
+    background-size: 560px 560px;
+    opacity: 0.58;
+  }
+}
+
+@media (prefers-contrast: more), (forced-colors: active) {
+  .texture-surface::before {
+    display: none;
+  }
+}
+
+@media print {
+  .texture-surface::before {
+    display: none;
+  }
+}
+
 .project-card-main {
   display: flex;
   min-width: 0;

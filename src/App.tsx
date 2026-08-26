@@ -200,7 +200,7 @@ function Header() {
 
 function Footer() {
   return (
-    <footer id="contact" className="site-footer" tabIndex={-1}>
+    <footer id="contact" className="site-footer texture-surface texture-charcoal" tabIndex={-1}>
       <div className="footer-intro">
         <p className="eyebrow eyebrow-light">Start a conversation</p>
         <h2>Research and practice in AI literacy and competence across K–12 and higher education.</h2>
@@ -631,7 +631,7 @@ function HomePage() {
   return (
     <Layout>
       <main id="main-content" tabIndex={-1}>
-        <section className="hero">
+        <section className="hero texture-surface texture-paper-fibre">
           <div className="hero-copy">
             <p className="eyebrow">Hello, I’m</p>
             <h1 tabIndex={-1}>
@@ -666,7 +666,10 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="interest-panel section-pad" aria-labelledby="research-interests-heading">
+        <section
+          className="interest-panel section-pad texture-surface texture-paper-fibre"
+          aria-labelledby="research-interests-heading"
+        >
           <div className="compact-heading">
             <p className="eyebrow">Current focus</p>
             <h2 id="research-interests-heading">Research interests</h2>
@@ -684,7 +687,11 @@ function HomePage() {
           </ul>
         </section>
 
-        <section id="projects" className="projects section-pad section-border" tabIndex={-1}>
+        <section
+          id="projects"
+          className="projects section-pad section-border texture-surface texture-paper-crumple"
+          tabIndex={-1}
+        >
           <div className="section-heading-row">
             <div>
               <p className="eyebrow">Selected work</p>
@@ -748,7 +755,7 @@ function HomePage() {
         <CollaborationMap />
 
         <section
-          className="featured-publications section-pad section-border"
+          className="featured-publications section-pad section-border texture-surface texture-paper-fibre"
           data-publication-count={publications.length}
         >
           <div className="publication-intro">
@@ -781,7 +788,11 @@ function HomePage() {
           </div>
         </section>
 
-        <section id="highlights" className="highlights section-pad section-border" tabIndex={-1}>
+        <section
+          id="highlights"
+          className="highlights section-pad section-border texture-surface texture-paper-crumple"
+          tabIndex={-1}
+        >
           <div className="section-heading-row">
             <div>
               <p className="eyebrow">Beyond the projects</p>
@@ -835,7 +846,7 @@ function ComingSoonProjectPage({ project }: { project: ComingSoonProject }) {
     <Layout>
       <main id="main-content" tabIndex={-1}>
         <article className="project-detail project-coming-soon" data-experience-kind="vibe-coded-products-preview">
-          <section className="project-hero section-pad">
+        <section className="project-hero section-pad texture-surface texture-paper-fibre">
             <div className="project-hero-copy">
               <Link className="back-link" to="/#projects">
                 <ArrowLeft aria-hidden="true" weight="bold" /> Back to projects
@@ -1001,7 +1012,7 @@ function ProjectPage() {
           {project.images && project.images.length > 0 && (
             <section
               id="project-gallery"
-              className="project-gallery section-pad section-border"
+              className="project-gallery section-pad section-border texture-surface texture-paper-crumple"
               aria-labelledby="gallery-heading"
               tabIndex={-1}
             >
@@ -1052,7 +1063,7 @@ function ProjectPage() {
           {project.products && project.products.length > 0 && (
             <section
               id="project-products"
-              className="product-showcase section-pad section-border"
+              className="product-showcase section-pad section-border texture-surface texture-technical-grid"
               aria-labelledby="product-showcase-heading"
               tabIndex={-1}
             >
@@ -1208,7 +1219,7 @@ function PublicationsPage() {
   return (
     <Layout>
       <main id="main-content" className="publications-page" tabIndex={-1}>
-        <section className="publications-hero section-pad">
+        <section className="publications-hero section-pad texture-surface texture-paper-fibre">
           <div className="publications-hero-copy">
             <p className="eyebrow">Published research</p>
             <div className="publications-title-row">
