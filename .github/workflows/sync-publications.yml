@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Check out the website
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
 
       - name: Set up Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
@@ -39,6 +41,8 @@ jobs:
 
       - name: Commit verified publication updates
         id: changes
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           if git diff --quiet -- src/publication-updates.generated.json; then
             echo "No verified publication update."
@@ -49,6 +53,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add src/publication-updates.generated.json
           git commit -m "chore: sync verified publications"
+          gh auth setup-git
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
