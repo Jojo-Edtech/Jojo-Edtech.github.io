@@ -5,8 +5,7 @@ on:
     - cron: "17 3 * * 1"
   workflow_dispatch:
 
-permissions:
-  contents: write
+permissions: {}
 
 concurrency:
   group: publication-sync
@@ -15,6 +14,10 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      changed: ${{ steps.changes.outputs.changed }}
     steps:
       - name: Check out the website
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
@@ -35,9 +38,11 @@ jobs:
         run: npm run check && npm run build && npm run audit && npm run test:sites
 
       - name: Commit verified publication updates
+        id: changes
         run: |
           if git diff --quiet -- src/publication-updates.generated.json; then
             echo "No verified publication update."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name "github-actions[bot]"
@@ -45,3 +50,13 @@ jobs:
           git add src/publication-updates.generated.json
           git commit -m "chore: sync verified publications"
           git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    if: ${{ needs.sync.outputs.changed == 'true' }}
+    needs: sync
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml
