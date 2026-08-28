@@ -135,7 +135,15 @@ for (const href of [
 ]) {
   assert(dataText.includes(href), `Vibe-coding public link is missing: ${href}`);
 }
-assert(!dataText.includes("https://github.com/Jojo-Edtech/study-house"), "Private study-house repository link leaked");
+const embeddedUrls = [...dataText.matchAll(/https:\/\/[^\s"'`]+/g)].map(([value]) => new URL(value));
+assert(
+  !embeddedUrls.some(
+    (url) =>
+      url.hostname === "github.com" &&
+      url.pathname.replace(/\/$/, "").toLowerCase() === "/jojo-edtech/study-house",
+  ),
+  "Private study-house repository link leaked",
+);
 const courseGalleryAssets = [
   "lesson-design-scaffold.jpg",
   "session-6-local-case.jpg",

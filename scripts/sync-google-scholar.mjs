@@ -11,16 +11,20 @@ const reportUrl = new URL("../qa/scholar-sync-report.json", import.meta.url);
 const allowedCrossrefTypes = new Set(["journal-article", "book-chapter"]);
 
 function decodeHtml(value) {
-  return value
-    .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
-    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number.parseInt(code, 10)))
-    .replaceAll("&amp;", "&")
-    .replaceAll("&quot;", '"')
-    .replaceAll("&#39;", "'")
-    .replaceAll("&apos;", "'")
-    .replaceAll("&ndash;", "–")
-    .replaceAll("&mdash;", "—")
-    .replaceAll("&nbsp;", " ");
+  const namedEntities = {
+    amp: "&",
+    apos: "'",
+    mdash: "—",
+    nbsp: " ",
+    ndash: "–",
+    quot: '"',
+  };
+
+  return value.replace(/&(?:#x([0-9a-f]+)|#(\d+)|([a-z]+));/gi, (entity, hex, decimal, named) => {
+    if (hex) return String.fromCodePoint(Number.parseInt(hex, 16));
+    if (decimal) return String.fromCodePoint(Number.parseInt(decimal, 10));
+    return namedEntities[named.toLowerCase()] ?? entity;
+  });
 }
 
 function cleanText(value) {
